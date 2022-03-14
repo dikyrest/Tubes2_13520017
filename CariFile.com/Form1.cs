@@ -14,6 +14,8 @@ namespace CariFile.com
     public partial class Form1 : Form
     {
         private String startingDirectory;//directory awal mulai pencarian
+        private String fileName;//nama file yang ingin dicari
+        private Boolean isSearchAllOccurence;//bernilai true jika ingin mencari semua kemunculan fileName
         public Form1()
         {
             InitializeComponent();
@@ -43,7 +45,16 @@ namespace CariFile.com
 
         private void startSearchButton_Click(object sender, EventArgs e)
         {
-            String a = "ac";
+            this.fileName = fileNameTextBox.Text;
+            this.isSearchAllOccurence = findAllOccurenceButton.Checked;
+            if (BFSbutton.Checked)
+            {
+                //panggil yg BFS
+            }
+            else if (DFSbutton.Checked)
+            {
+                //panggil yg DFS
+            }
         }
     }
 }
