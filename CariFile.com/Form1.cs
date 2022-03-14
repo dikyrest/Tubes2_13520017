@@ -38,7 +38,7 @@ namespace CariFile.com
 
         private void findAllOccurenceButton_CheckedChanged(object sender, EventArgs e)
         {
-
+            //
         }
     }
 }
