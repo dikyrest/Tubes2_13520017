@@ -8,3 +8,13 @@ C:\Users\anugr\Tubes2_13520017\CariFile.com\obj\Debug\CariFile.com.csproj.Genera
 C:\Users\anugr\Tubes2_13520017\CariFile.com\obj\Debug\CariFile.com.csproj.CoreCompileInputs.cache
 C:\Users\anugr\Tubes2_13520017\CariFile.com\obj\Debug\CariFile.com.exe
 C:\Users\anugr\Tubes2_13520017\CariFile.com\obj\Debug\CariFile.com.pdb
+C:\Users\anugr\Tubes2_13520017\CariFile.com\bin\Debug\Microsoft.WindowsAPICodePack.dll
+C:\Users\anugr\Tubes2_13520017\CariFile.com\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\anugr\Tubes2_13520017\CariFile.com\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.dll
+C:\Users\anugr\Tubes2_13520017\CariFile.com\bin\Debug\Microsoft.WindowsAPICodePack.pdb
+C:\Users\anugr\Tubes2_13520017\CariFile.com\bin\Debug\Microsoft.WindowsAPICodePack.xml
+C:\Users\anugr\Tubes2_13520017\CariFile.com\bin\Debug\Microsoft.WindowsAPICodePack.Shell.pdb
+C:\Users\anugr\Tubes2_13520017\CariFile.com\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+C:\Users\anugr\Tubes2_13520017\CariFile.com\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.pdb
+C:\Users\anugr\Tubes2_13520017\CariFile.com\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.xml
+C:\Users\anugr\Tubes2_13520017\CariFile.com\obj\Debug\CariFile.com.csproj.CopyComplete

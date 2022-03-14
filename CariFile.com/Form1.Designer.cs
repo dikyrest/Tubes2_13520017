@@ -32,7 +32,9 @@
             this.title = new System.Windows.Forms.Label();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.outputPanel = new System.Windows.Forms.Panel();
+            this.outputLabel = new System.Windows.Forms.Label();
             this.inputPanel = new System.Windows.Forms.Panel();
+            this.startSearchButton = new System.Windows.Forms.Button();
             this.DFSbutton = new System.Windows.Forms.RadioButton();
             this.BFSbutton = new System.Windows.Forms.RadioButton();
             this.chooseMethodLabel = new System.Windows.Forms.Label();
@@ -42,8 +44,6 @@
             this.selectedFolderLabel = new System.Windows.Forms.Label();
             this.chooseDirectoryLabel = new System.Windows.Forms.Label();
             this.inputLabel = new System.Windows.Forms.Label();
-            this.startSearchButton = new System.Windows.Forms.Button();
-            this.outputLabel = new System.Windows.Forms.Label();
             this.mainPanel.SuspendLayout();
             this.outputPanel.SuspendLayout();
             this.inputPanel.SuspendLayout();
@@ -57,6 +57,7 @@
             this.btnBrowse.TabIndex = 0;
             this.btnBrowse.Text = "Pilih Folder...";
             this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
             // title
             // 
@@ -79,17 +80,28 @@
             this.mainPanel.Controls.Add(this.inputPanel);
             this.mainPanel.Location = new System.Drawing.Point(2, 64);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(669, 337);
+            this.mainPanel.Size = new System.Drawing.Size(912, 427);
             this.mainPanel.TabIndex = 2;
             // 
             // outputPanel
             // 
             this.outputPanel.Controls.Add(this.outputLabel);
             this.outputPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.outputPanel.Location = new System.Drawing.Point(328, 0);
+            this.outputPanel.Location = new System.Drawing.Point(457, 0);
             this.outputPanel.Name = "outputPanel";
-            this.outputPanel.Size = new System.Drawing.Size(341, 337);
+            this.outputPanel.Size = new System.Drawing.Size(455, 427);
             this.outputPanel.TabIndex = 1;
+            // 
+            // outputLabel
+            // 
+            this.outputLabel.AutoSize = true;
+            this.outputLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.outputLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.outputLabel.Location = new System.Drawing.Point(0, 0);
+            this.outputLabel.Name = "outputLabel";
+            this.outputLabel.Size = new System.Drawing.Size(120, 37);
+            this.outputLabel.TabIndex = 10;
+            this.outputLabel.Text = "Output";
             // 
             // inputPanel
             // 
@@ -107,13 +119,22 @@
             this.inputPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.inputPanel.Location = new System.Drawing.Point(0, 0);
             this.inputPanel.Name = "inputPanel";
-            this.inputPanel.Size = new System.Drawing.Size(329, 337);
+            this.inputPanel.Size = new System.Drawing.Size(448, 427);
             this.inputPanel.TabIndex = 0;
+            // 
+            // startSearchButton
+            // 
+            this.startSearchButton.Location = new System.Drawing.Point(76, 331);
+            this.startSearchButton.Name = "startSearchButton";
+            this.startSearchButton.Size = new System.Drawing.Size(148, 35);
+            this.startSearchButton.TabIndex = 9;
+            this.startSearchButton.Text = "MULAI CARI";
+            this.startSearchButton.UseVisualStyleBackColor = true;
             // 
             // DFSbutton
             // 
             this.DFSbutton.AutoSize = true;
-            this.DFSbutton.Location = new System.Drawing.Point(12, 263);
+            this.DFSbutton.Location = new System.Drawing.Point(12, 301);
             this.DFSbutton.Name = "DFSbutton";
             this.DFSbutton.Size = new System.Drawing.Size(67, 24);
             this.DFSbutton.TabIndex = 8;
@@ -124,39 +145,41 @@
             // BFSbutton
             // 
             this.BFSbutton.AutoSize = true;
-            this.BFSbutton.Location = new System.Drawing.Point(12, 233);
+            this.BFSbutton.Location = new System.Drawing.Point(12, 271);
             this.BFSbutton.Name = "BFSbutton";
             this.BFSbutton.Size = new System.Drawing.Size(66, 24);
             this.BFSbutton.TabIndex = 7;
             this.BFSbutton.TabStop = true;
             this.BFSbutton.Text = "BFS";
             this.BFSbutton.UseVisualStyleBackColor = true;
+            this.BFSbutton.CheckedChanged += new System.EventHandler(this.BFSbutton_CheckedChanged);
             // 
             // chooseMethodLabel
             // 
             this.chooseMethodLabel.AutoSize = true;
-            this.chooseMethodLabel.Location = new System.Drawing.Point(3, 198);
+            this.chooseMethodLabel.Location = new System.Drawing.Point(-4, 234);
             this.chooseMethodLabel.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.chooseMethodLabel.Name = "chooseMethodLabel";
             this.chooseMethodLabel.Padding = new System.Windows.Forms.Padding(10);
-            this.chooseMethodLabel.Size = new System.Drawing.Size(203, 40);
+            this.chooseMethodLabel.Size = new System.Drawing.Size(194, 40);
             this.chooseMethodLabel.TabIndex = 6;
-            this.chooseMethodLabel.Text = "Pilih Metode Pencaraian:";
+            this.chooseMethodLabel.Text = "Pilih Metode Pencarian:";
             // 
             // findAllOccurenceButton
             // 
             this.findAllOccurenceButton.AutoSize = true;
-            this.findAllOccurenceButton.Location = new System.Drawing.Point(7, 174);
+            this.findAllOccurenceButton.Location = new System.Drawing.Point(7, 208);
             this.findAllOccurenceButton.Name = "findAllOccurenceButton";
             this.findAllOccurenceButton.Size = new System.Drawing.Size(248, 24);
             this.findAllOccurenceButton.TabIndex = 5;
             this.findAllOccurenceButton.Text = "Temukan Semua Kemunculan";
             this.findAllOccurenceButton.UseVisualStyleBackColor = true;
+            this.findAllOccurenceButton.CheckedChanged += new System.EventHandler(this.findAllOccurenceButton_CheckedChanged);
             // 
             // fileNameTextBox
             // 
             this.fileNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fileNameTextBox.Location = new System.Drawing.Point(7, 145);
+            this.fileNameTextBox.Location = new System.Drawing.Point(7, 179);
             this.fileNameTextBox.Name = "fileNameTextBox";
             this.fileNameTextBox.Size = new System.Drawing.Size(200, 23);
             this.fileNameTextBox.TabIndex = 4;
@@ -164,7 +187,7 @@
             // chooseFileLabel
             // 
             this.chooseFileLabel.AutoSize = true;
-            this.chooseFileLabel.Location = new System.Drawing.Point(-1, 110);
+            this.chooseFileLabel.Location = new System.Drawing.Point(-1, 133);
             this.chooseFileLabel.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.chooseFileLabel.Name = "chooseFileLabel";
             this.chooseFileLabel.Padding = new System.Windows.Forms.Padding(10);
@@ -175,7 +198,7 @@
             // selectedFolderLabel
             // 
             this.selectedFolderLabel.AutoSize = true;
-            this.selectedFolderLabel.Location = new System.Drawing.Point(144, 80);
+            this.selectedFolderLabel.Location = new System.Drawing.Point(8, 109);
             this.selectedFolderLabel.Name = "selectedFolderLabel";
             this.selectedFolderLabel.Size = new System.Drawing.Size(129, 20);
             this.selectedFolderLabel.TabIndex = 2;
@@ -184,7 +207,6 @@
             // chooseDirectoryLabel
             // 
             this.chooseDirectoryLabel.AutoSize = true;
-            this.chooseDirectoryLabel.Dock = System.Windows.Forms.DockStyle.Top;
             this.chooseDirectoryLabel.Location = new System.Drawing.Point(0, 37);
             this.chooseDirectoryLabel.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.chooseDirectoryLabel.Name = "chooseDirectoryLabel";
@@ -196,7 +218,6 @@
             // inputLabel
             // 
             this.inputLabel.AutoSize = true;
-            this.inputLabel.Dock = System.Windows.Forms.DockStyle.Top;
             this.inputLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inputLabel.Location = new System.Drawing.Point(0, 0);
             this.inputLabel.Name = "inputLabel";
@@ -204,29 +225,9 @@
             this.inputLabel.TabIndex = 0;
             this.inputLabel.Text = "Input";
             // 
-            // startSearchButton
-            // 
-            this.startSearchButton.Location = new System.Drawing.Point(81, 291);
-            this.startSearchButton.Name = "startSearchButton";
-            this.startSearchButton.Size = new System.Drawing.Size(148, 35);
-            this.startSearchButton.TabIndex = 9;
-            this.startSearchButton.Text = "MULAI CARI";
-            this.startSearchButton.UseVisualStyleBackColor = true;
-            // 
-            // outputLabel
-            // 
-            this.outputLabel.AutoSize = true;
-            this.outputLabel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.outputLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.outputLabel.Location = new System.Drawing.Point(0, 0);
-            this.outputLabel.Name = "outputLabel";
-            this.outputLabel.Size = new System.Drawing.Size(120, 37);
-            this.outputLabel.TabIndex = 10;
-            this.outputLabel.Text = "Output";
-            // 
             // Form1
             // 
-            this.ClientSize = new System.Drawing.Size(683, 402);
+            this.ClientSize = new System.Drawing.Size(912, 489);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.title);
             this.Name = "Form1";
