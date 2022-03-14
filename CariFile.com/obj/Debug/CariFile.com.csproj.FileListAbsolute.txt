@@ -1,0 +1,10 @@
+C:\Users\anugr\Tubes2_13520017\CariFile.com\bin\Debug\CariFile.com.exe.config
+C:\Users\anugr\Tubes2_13520017\CariFile.com\bin\Debug\CariFile.com.exe
+C:\Users\anugr\Tubes2_13520017\CariFile.com\bin\Debug\CariFile.com.pdb
+C:\Users\anugr\Tubes2_13520017\CariFile.com\obj\Debug\CariFile.com.csprojAssemblyReference.cache
+C:\Users\anugr\Tubes2_13520017\CariFile.com\obj\Debug\CariFile.com.Form1.resources
+C:\Users\anugr\Tubes2_13520017\CariFile.com\obj\Debug\CariFile.com.Properties.Resources.resources
+C:\Users\anugr\Tubes2_13520017\CariFile.com\obj\Debug\CariFile.com.csproj.GenerateResource.cache
+C:\Users\anugr\Tubes2_13520017\CariFile.com\obj\Debug\CariFile.com.csproj.CoreCompileInputs.cache
+C:\Users\anugr\Tubes2_13520017\CariFile.com\obj\Debug\CariFile.com.exe
+C:\Users\anugr\Tubes2_13520017\CariFile.com\obj\Debug\CariFile.com.pdb
