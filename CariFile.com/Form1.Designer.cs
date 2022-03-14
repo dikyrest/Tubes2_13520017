@@ -130,6 +130,7 @@
             this.startSearchButton.TabIndex = 9;
             this.startSearchButton.Text = "MULAI CARI";
             this.startSearchButton.UseVisualStyleBackColor = true;
+            this.startSearchButton.Click += new System.EventHandler(this.startSearchButton_Click);
             // 
             // DFSbutton
             // 

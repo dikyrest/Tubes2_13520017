@@ -38,7 +38,12 @@ namespace CariFile.com
 
         private void findAllOccurenceButton_CheckedChanged(object sender, EventArgs e)
         {
-            //
+            
+        }
+
+        private void startSearchButton_Click(object sender, EventArgs e)
+        {
+            String a = "aa";
         }
     }
 }
