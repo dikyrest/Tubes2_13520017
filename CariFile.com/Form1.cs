@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using Microsoft.Msagl;
 
 namespace CariFile.com
 {
@@ -16,6 +17,7 @@ namespace CariFile.com
         private String startingDirectory;//directory awal mulai pencarian
         private String fileName;//nama file yang ingin dicari
         private Boolean isSearchAllOccurence;//bernilai true jika ingin mencari semua kemunculan fileName
+        //private 
         public Form1()
         {
             InitializeComponent();
@@ -47,6 +49,7 @@ namespace CariFile.com
         {
             this.fileName = fileNameTextBox.Text;
             this.isSearchAllOccurence = findAllOccurenceButton.Checked;
+            //graphImage.Image = Image.FromFile("test.png");
             if (BFSbutton.Checked)
             {
                 //panggil yg BFS
@@ -55,6 +58,54 @@ namespace CariFile.com
             {
                 //panggil yg DFS
             }
+
         }
+    }
+    public partial class Tree
+    {
+        //attributes
+        private Node node;
+        //method
+        public Tree(string name,SearchStatus status){
+            this.node = new Node(name,status);
+        }
+    }
+    public partial class Node
+    {
+        //attributes
+        private string name;//name of the file/directory
+        private SearchStatus status;//status node tersebut
+        private List<Node> childNode;//node yang jadi child si node ini
+        //method
+        public Node(string name,SearchStatus status)
+        {
+            this.name = name;
+            this.status = status;
+            this.childNode = new List<Node>();
+        }
+        public void addChildNode(string name,SearchStatus status)
+        {
+            Node node = new Node(name, status);
+            this.childNode.Add(node);
+        }
+        public string getName()
+        {
+            return this.name;
+        }
+        public SearchStatus getStatus()
+        {
+            return this.status;
+        }
+        public List<Node> getChildNode()
+        {
+            return this.childNode;
+        }
+
+    }
+    public enum SearchStatus
+    {
+        FoundPath,//path ke arah file yang ditemukan
+        NotFoundPath,//file/folder yang tidak ditemukan
+        UnsearchedPath//file atau folder yang belum dicari
     }
 }

@@ -44,9 +44,11 @@
             this.selectedFolderLabel = new System.Windows.Forms.Label();
             this.chooseDirectoryLabel = new System.Windows.Forms.Label();
             this.inputLabel = new System.Windows.Forms.Label();
+            this.graphImage = new System.Windows.Forms.PictureBox();
             this.mainPanel.SuspendLayout();
             this.outputPanel.SuspendLayout();
             this.inputPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.graphImage)).BeginInit();
             this.SuspendLayout();
             // 
             // btnBrowse
@@ -85,6 +87,7 @@
             // 
             // outputPanel
             // 
+            this.outputPanel.Controls.Add(this.graphImage);
             this.outputPanel.Controls.Add(this.outputLabel);
             this.outputPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.outputPanel.Location = new System.Drawing.Point(457, 0);
@@ -226,6 +229,14 @@
             this.inputLabel.TabIndex = 0;
             this.inputLabel.Text = "Input";
             // 
+            // graphImage
+            // 
+            this.graphImage.Location = new System.Drawing.Point(4, 37);
+            this.graphImage.Name = "graphImage";
+            this.graphImage.Size = new System.Drawing.Size(448, 387);
+            this.graphImage.TabIndex = 11;
+            this.graphImage.TabStop = false;
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(912, 489);
@@ -237,6 +248,7 @@
             this.outputPanel.PerformLayout();
             this.inputPanel.ResumeLayout(false);
             this.inputPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.graphImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,6 +272,7 @@
         private System.Windows.Forms.RadioButton DFSbutton;
         private System.Windows.Forms.Button startSearchButton;
         private System.Windows.Forms.Label outputLabel;
+        private System.Windows.Forms.PictureBox graphImage;
     }
 }
 
