@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Microsoft.Msagl;
+using BFS;
 
 namespace CariFile.com
 {
@@ -17,6 +18,7 @@ namespace CariFile.com
         private String startingDirectory;//directory awal mulai pencarian
         private String fileName;//nama file yang ingin dicari
         private Boolean isSearchAllOccurence;//bernilai true jika ingin mencari semua kemunculan fileName
+        private Microsoft.Msagl.GraphViewerGdi.GViewer graph;//graph yg dibuat
         //private 
         public Form1()
         {
@@ -53,12 +55,23 @@ namespace CariFile.com
             if (BFSbutton.Checked)
             {
                 //panggil yg BFS
+                if (isSearchAllOccurence)
+                {
+                    //panggil yg cari semua occurence
+                    this.graph = BFS.ViewerSample.BFS2(this.startingDirectory, this.fileName);
+                }
+                else
+                {
+                    //panggil yang cari 1 occurence saja
+                    this.graph = BFS.ViewerSample.BFS(this.startingDirectory, this.fileName);
+                    //graphImage.Controls.Add()
+                }
+                graphOutput.Controls.Add(this.graph);
             }
             else if (DFSbutton.Checked)
             {
                 //panggil yg DFS
             }
-
         }
     }
     public partial class Tree

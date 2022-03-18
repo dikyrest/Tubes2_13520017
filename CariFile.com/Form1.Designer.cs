@@ -44,11 +44,10 @@
             this.selectedFolderLabel = new System.Windows.Forms.Label();
             this.chooseDirectoryLabel = new System.Windows.Forms.Label();
             this.inputLabel = new System.Windows.Forms.Label();
-            this.graphImage = new System.Windows.Forms.PictureBox();
+            this.graphOutput = new System.Windows.Forms.Panel();
             this.mainPanel.SuspendLayout();
             this.outputPanel.SuspendLayout();
             this.inputPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.graphImage)).BeginInit();
             this.SuspendLayout();
             // 
             // btnBrowse
@@ -87,7 +86,7 @@
             // 
             // outputPanel
             // 
-            this.outputPanel.Controls.Add(this.graphImage);
+            this.outputPanel.Controls.Add(this.graphOutput);
             this.outputPanel.Controls.Add(this.outputLabel);
             this.outputPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.outputPanel.Location = new System.Drawing.Point(457, 0);
@@ -229,13 +228,13 @@
             this.inputLabel.TabIndex = 0;
             this.inputLabel.Text = "Input";
             // 
-            // graphImage
+            // graphOutput
             // 
-            this.graphImage.Location = new System.Drawing.Point(4, 37);
-            this.graphImage.Name = "graphImage";
-            this.graphImage.Size = new System.Drawing.Size(448, 387);
-            this.graphImage.TabIndex = 11;
-            this.graphImage.TabStop = false;
+            this.graphOutput.Dock = System.Windows.Forms.DockStyle.Right;
+            this.graphOutput.Location = new System.Drawing.Point(0, 37);
+            this.graphOutput.Name = "graphOutput";
+            this.graphOutput.Size = new System.Drawing.Size(455, 390);
+            this.graphOutput.TabIndex = 11;
             // 
             // Form1
             // 
@@ -248,7 +247,6 @@
             this.outputPanel.PerformLayout();
             this.inputPanel.ResumeLayout(false);
             this.inputPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.graphImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -272,7 +270,7 @@
         private System.Windows.Forms.RadioButton DFSbutton;
         private System.Windows.Forms.Button startSearchButton;
         private System.Windows.Forms.Label outputLabel;
-        private System.Windows.Forms.PictureBox graphImage;
+        private System.Windows.Forms.Panel graphOutput;
     }
 }
 
