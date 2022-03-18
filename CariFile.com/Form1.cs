@@ -52,6 +52,8 @@ namespace CariFile.com
             this.fileName = fileNameTextBox.Text;
             this.isSearchAllOccurence = findAllOccurenceButton.Checked;
             //graphImage.Image = Image.FromFile("test.png");
+            //reset graph
+            graphOutput.Controls.Clear();
             if (BFSbutton.Checked)
             {
                 //panggil yg BFS
