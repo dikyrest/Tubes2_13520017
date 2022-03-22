@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Microsoft.Msagl;
 using BFS;
+using System.Diagnostics;
 
 namespace CariFile.com
 {
@@ -19,10 +20,12 @@ namespace CariFile.com
         private String fileName;//nama file yang ingin dicari
         private Boolean isSearchAllOccurence;//bernilai true jika ingin mencari semua kemunculan fileName
         private Microsoft.Msagl.GraphViewerGdi.GViewer graph;//graph yg dibuat
+        private System.Diagnostics.Stopwatch stopwatch;//stopwatch untuk menghitung waktu menjalankan algoritma
         //private 
         public Form1()
         {
             InitializeComponent();
+            this.stopwatch = new Stopwatch();
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -49,18 +52,24 @@ namespace CariFile.com
 
         private void startSearchButton_Click(object sender, EventArgs e)
         {
+            stopwatch.Start();
             this.fileName = fileNameTextBox.Text;
             this.isSearchAllOccurence = findAllOccurenceButton.Checked;
-            //graphImage.Image = Image.FromFile("test.png");
+            timeString.Text = "0 ms";
             //reset graph
             graphOutput.Controls.Clear();
+            stopwatch.Stop();
+            Console.WriteLine(stopwatch.ElapsedMilliseconds.ToString());
             if (BFSbutton.Checked)
             {
                 //panggil yg BFS
                 if (isSearchAllOccurence)
                 {
                     //panggil yg cari semua occurence
+                    stopwatch.Start();
                     this.graph = BFS.ViewerSample.BFS2(this.startingDirectory, this.fileName);
+                    Console.WriteLine("Anying");
+                    stopwatch.Stop();
                 }
                 else
                 {
@@ -68,6 +77,10 @@ namespace CariFile.com
                     this.graph = BFS.ViewerSample.BFS(this.startingDirectory, this.fileName);
                     //graphImage.Controls.Add()
                 }
+                long timeElapsed = stopwatch.ElapsedMilliseconds;
+                Console.WriteLine(timeElapsed.ToString());
+                string time = timeElapsed.ToString() + " ms";
+                timeString.Text = time;
                 graphOutput.Controls.Add(this.graph);
             }
             else if (DFSbutton.Checked)
@@ -75,6 +88,12 @@ namespace CariFile.com
                 //panggil yg DFS
             }
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
     public partial class Tree
     {

@@ -32,6 +32,7 @@
             this.title = new System.Windows.Forms.Label();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.outputPanel = new System.Windows.Forms.Panel();
+            this.graphOutput = new System.Windows.Forms.Panel();
             this.outputLabel = new System.Windows.Forms.Label();
             this.inputPanel = new System.Windows.Forms.Panel();
             this.startSearchButton = new System.Windows.Forms.Button();
@@ -44,10 +45,13 @@
             this.selectedFolderLabel = new System.Windows.Forms.Label();
             this.chooseDirectoryLabel = new System.Windows.Forms.Label();
             this.inputLabel = new System.Windows.Forms.Label();
-            this.graphOutput = new System.Windows.Forms.Panel();
+            this.timeSpentLabel = new System.Windows.Forms.Label();
+            this.panelTime = new System.Windows.Forms.Panel();
+            this.timeString = new System.Windows.Forms.Label();
             this.mainPanel.SuspendLayout();
             this.outputPanel.SuspendLayout();
             this.inputPanel.SuspendLayout();
+            this.panelTime.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnBrowse
@@ -93,6 +97,14 @@
             this.outputPanel.Name = "outputPanel";
             this.outputPanel.Size = new System.Drawing.Size(455, 427);
             this.outputPanel.TabIndex = 1;
+            // 
+            // graphOutput
+            // 
+            this.graphOutput.Dock = System.Windows.Forms.DockStyle.Right;
+            this.graphOutput.Location = new System.Drawing.Point(0, 37);
+            this.graphOutput.Name = "graphOutput";
+            this.graphOutput.Size = new System.Drawing.Size(455, 390);
+            this.graphOutput.TabIndex = 11;
             // 
             // outputLabel
             // 
@@ -228,17 +240,39 @@
             this.inputLabel.TabIndex = 0;
             this.inputLabel.Text = "Input";
             // 
-            // graphOutput
+            // timeSpentLabel
             // 
-            this.graphOutput.Dock = System.Windows.Forms.DockStyle.Right;
-            this.graphOutput.Location = new System.Drawing.Point(0, 37);
-            this.graphOutput.Name = "graphOutput";
-            this.graphOutput.Size = new System.Drawing.Size(455, 390);
-            this.graphOutput.TabIndex = 11;
+            this.timeSpentLabel.AutoSize = true;
+            this.timeSpentLabel.Location = new System.Drawing.Point(462, 504);
+            this.timeSpentLabel.Name = "timeSpentLabel";
+            this.timeSpentLabel.Size = new System.Drawing.Size(94, 20);
+            this.timeSpentLabel.TabIndex = 3;
+            this.timeSpentLabel.Text = "Time Spent:";
+            this.timeSpentLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.timeSpentLabel.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // panelTime
+            // 
+            this.panelTime.Controls.Add(this.timeString);
+            this.panelTime.Location = new System.Drawing.Point(562, 496);
+            this.panelTime.Name = "panelTime";
+            this.panelTime.Size = new System.Drawing.Size(212, 33);
+            this.panelTime.TabIndex = 4;
+            // 
+            // timeString
+            // 
+            this.timeString.AutoSize = true;
+            this.timeString.Location = new System.Drawing.Point(0, 8);
+            this.timeString.Name = "timeString";
+            this.timeString.Size = new System.Drawing.Size(43, 20);
+            this.timeString.TabIndex = 0;
+            this.timeString.Text = "0 ms";
             // 
             // Form1
             // 
-            this.ClientSize = new System.Drawing.Size(912, 489);
+            this.ClientSize = new System.Drawing.Size(904, 525);
+            this.Controls.Add(this.panelTime);
+            this.Controls.Add(this.timeSpentLabel);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.title);
             this.Name = "Form1";
@@ -247,6 +281,8 @@
             this.outputPanel.PerformLayout();
             this.inputPanel.ResumeLayout(false);
             this.inputPanel.PerformLayout();
+            this.panelTime.ResumeLayout(false);
+            this.panelTime.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -271,6 +307,9 @@
         private System.Windows.Forms.Button startSearchButton;
         private System.Windows.Forms.Label outputLabel;
         private System.Windows.Forms.Panel graphOutput;
+        private System.Windows.Forms.Label timeSpentLabel;
+        private System.Windows.Forms.Panel panelTime;
+        private System.Windows.Forms.Label timeString;
     }
 }
 
