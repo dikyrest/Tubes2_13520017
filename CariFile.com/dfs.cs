@@ -7,15 +7,14 @@ using System.Linq;
 class DepthFirstSearch
 {
     public static string[] getListPath(string firstDir)
-    {
+    {   // Menghasilkan daftar path yang mungkin dari sebuah direktori
         if (firstDir.Length == 0)
         {
             string[] kosong = { };
             return kosong;
         }
-
         else
-        {
+        {   // Mengambil direktori di bawah firstDir
             IList<string> searchFolderTemp = new List<string>();
             try
             {
@@ -28,7 +27,7 @@ class DepthFirstSearch
             {
                 //
             }
-
+            // Mengambil file di bawah firstDir
             IList<string> searchFileTemp = new List<string>();
             try
             {
@@ -41,40 +40,77 @@ class DepthFirstSearch
             {
                 //
             }
-
+            // Urutkan sesuai abjad
             string[] searchFolder = searchFolderTemp.ToArray();
             string[] searchFile = searchFileTemp.ToArray();
             Array.Sort(searchFolder, StringComparer.OrdinalIgnoreCase);
             Array.Sort(searchFile, StringComparer.OrdinalIgnoreCase);
             string[] listPath = new string[searchFolder.Length + searchFile.Length + 1];
-
+            // Rekursi untuk mendapatkan semua file dan folder
             foreach (string folder in searchFolder)
             {
                 string[] folderResult = { folder };
                 listPath = listPath.Concat(folderResult).ToArray();
                 listPath = listPath.Concat(getListPath(folderResult[0])).ToArray();
             }
-
+            // Menghapus semua reference null
             listPath = listPath.Concat(searchFile).ToArray();
             listPath = listPath.Where(s => s != null).ToArray();
 
             return listPath;
         }
     }
+    public static string[][] getPathId(string[] listPath, string firstDir)
+    {   // Mendapatkan id unik dari sebuah path
+        string[][] pathId = new string[listPath.Length + 1][];
+        int leafId = 1;
 
-    public static string[][] getMatrixNodeOnce(string[] listPath, string fileName)
-    {
+        string[] firstDirId = { firstDir, "a0" };
+        pathId[0] = firstDirId;
+
+        foreach (string path in listPath)
+        {
+            string pathName = path;
+            string ID = "a" + leafId;
+            string[] pathIdLine = { pathName, ID };
+            pathId[leafId] = pathIdLine;
+            leafId++;
+        }
+
+        return pathId;
+    }
+    public static string[][] getMatrixNodeOnce(string[] listPath, string firstDir, string fileName)
+    {   // Mendapatkan matrix node untuk kemunculan fileName yang pertama
         string[][] matrix = new string[listPath.Length][];
         List<string> listPreviousPath = new List<string>();
+        string[][] pathReference = getPathId(listPath, firstDir);
         int row = 0;
+        
         foreach (string path in listPath)
         {
             string[] arrLeaf = path.Split('\\');
             string leaf = arrLeaf[arrLeaf.Length - 1];
             string previousPath = path.Substring(0, path.Length - leaf.Length - 1);
-            string[] hasilGabung = { previousPath, leaf, "0" }; // Awal, warnai hitam
+            string previousId = "";
+            foreach (string[] pathId in pathReference)
+            {
+                if (pathId[0] == previousPath)
+                {
+                    previousId = pathId[1];
+                    break;
+                }
+            }
+            string leafId = "";
+            foreach (string[] pathId in pathReference)
+            {
+                if (pathId[0] == path)
+                {
+                    leafId = pathId[1];
+                    break;
+                }
+            }
+            string[] hasilGabung = { previousId, leafId, previousPath, leaf, "0" }; // Awal, warnai hitam
             matrix[row] = hasilGabung;
-
             row++;
         }
 
@@ -84,30 +120,48 @@ class DepthFirstSearch
             string[] arrLeaf = path.Split('\\');
             string leaf = arrLeaf[arrLeaf.Length - 1];
             string previousPath = path.Substring(0, path.Length - leaf.Length - 1);
-            string[] hasilGabung = { previousPath, leaf, "0" }; // Awal, warnai hitam
+            string previousId = "";
+            foreach (string[] pathId in pathReference)
+            {
+                if (pathId[0] == previousPath)
+                {
+                    previousId = pathId[1];
+                    break;
+                }
+            }
+            string leafId = "";
+            foreach (string[] pathId in pathReference)
+            {
+                if (pathId[0] == path)
+                {
+                    leafId = pathId[1];
+                    break;
+                }
+            }
+            string[] hasilGabung = { previousId, leafId, previousPath, leaf, "0" }; // Awal, warnai hitam
             matrix[row] = hasilGabung;
 
             if (leaf == fileName)
             {
-                matrix[row][2] = "1"; // Kalau ketemu, warnai biru
+                matrix[row][4] = "1"; // Kalau ketemu, warnai biru
                 listPreviousPath.Add(previousPath);
                 break;
             }
             else
             {
-                matrix[row][2] = "2"; // Kalau tidak ketemu, warnai merah
+                matrix[row][4] = "2"; // Kalau tidak ketemu, warnai merah
             }
 
             row++;
         }
-
+        // Mengubah path menjadi nama file/folder
         foreach (string[] node in matrix)
         {
-            string prevPath = node[0];
+            string prevPath = node[2];
             string[] arrFolder = prevPath.Split('\\');
-            node[0] = arrFolder[arrFolder.Length - 1];
+            node[2] = arrFolder[arrFolder.Length - 1];
         }
-
+        // Mengiterasi semua folder di atas file yang ditemukan
         foreach (string path in listPreviousPath)
         {
             string[] arrPath = path.Split('\\');
@@ -116,9 +170,9 @@ class DepthFirstSearch
                 string[] edge = { arrPath[i], arrPath[i + 1] };
                 foreach (string[] node in matrix)
                 {
-                    if (node[0] == edge[0] && node[1] == edge[1])
+                    if (node[2] == edge[0] && node[3] == edge[1])
                     {
-                        node[2] = "1";
+                        node[4] = "1";
                         break;
                     }
                 }
@@ -128,39 +182,58 @@ class DepthFirstSearch
         return matrix;
     }
 
-    public static string[][] getMatrixNodeAllOccurrence(string[] listPath, string fileName)
-    {
+    public static string[][] getMatrixNodeAllOccurrence(string[] listPath, string firstDir, string fileName)
+    {   // Menghasilkan matrix node untuk semua kemunculan file
         string[][] matrix = new string[listPath.Length][];
         List<string> listPreviousPath = new List<string>();
+        string[][] pathReference = getPathId(listPath, firstDir);
         int row = 0;
         foreach (string path in listPath)
         {
             string[] arrLeaf = path.Split('\\');
             string leaf = arrLeaf[arrLeaf.Length - 1];
             string previousPath = path.Substring(0, path.Length - leaf.Length - 1);
-            string[] hasilGabung = {previousPath, leaf, "0"}; // Awal, warnai hitam
+            string previousId = "";
+            foreach (string[] pathId in pathReference)
+            {
+                if (pathId[0] == previousPath)
+                {
+                    previousId = pathId[1];
+                    break;
+                }
+            }
+            string leafId = "";
+            foreach (string[] pathId in pathReference)
+            {
+                if (pathId[0] == path)
+                {
+                    leafId = pathId[1];
+                    break;
+                }
+            }
+            string[] hasilGabung = { previousId, leafId, previousPath, leaf, "0" }; // Awal, warnai hitam
             matrix[row] = hasilGabung;
 
             if (leaf == fileName)
             {
-                matrix[row][2] = "1"; // Kalau ketemu, warnai biru
+                matrix[row][4] = "1"; // Kalau ketemu, warnai biru
                 listPreviousPath.Add(previousPath);
             }
             else
             {
-                matrix[row][2] = "2"; // Kalau tidak ketemu, warnai merah
+                matrix[row][4] = "2"; // Kalau tidak ketemu, warnai merah
             }
 
             row++;
         }
-
+        // Mengubah path menjadi nama file/folder
         foreach (string[] node in matrix)
         {
-            string prevPath = node[0];
+            string prevPath = node[2];
             string[] arrFolder = prevPath.Split('\\');
-            node[0] = arrFolder[arrFolder.Length - 1];
+            node[2] = arrFolder[arrFolder.Length - 1];
         }
-
+        // Mengiterasi semua folder di atas file yang ditemukan
         foreach (string path in listPreviousPath)
         {
             string[] arrPath = path.Split('\\');
@@ -169,9 +242,9 @@ class DepthFirstSearch
                 string[] edge = { arrPath[i], arrPath[i+1] };
                 foreach (string[] node in matrix)
                 {
-                    if (node[0] == edge[0] && node[1] == edge[1])
+                    if (node[2] == edge[0] && node[3] == edge[1])
                     {
-                        node[2] = "1";
+                        node[4] = "1";
                         break;
                     }
                 }
@@ -181,7 +254,7 @@ class DepthFirstSearch
         return matrix;
     }
 
-    public static Microsoft.Msagl.GraphViewerGdi.GViewer displayGraph(string[][] matrixNode)
+    public static Microsoft.Msagl.GraphViewerGdi.GViewer displayGraph(string[][] pathReference, string[][] matrixNode)
     {
         //create a form 
         System.Windows.Forms.Form form = new System.Windows.Forms.Form();
@@ -190,20 +263,28 @@ class DepthFirstSearch
         //create a graph object 
         Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
         //create the graph content 
-        for (int i = 0; i < matrixNode.Length; i++)
+        foreach (string[] node in matrixNode)
         {
-            if (matrixNode[i][2] == "0")
+            if (node[4] == "0")
             {
-                graph.AddEdge(matrixNode[i][0], matrixNode[i][1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
+                graph.AddEdge(node[0], node[1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Black; // Belum dikunjungi
             }
-            else if (matrixNode[i][2] == "1")
+            else if (node[4] == "1")
             {
-                graph.AddEdge(matrixNode[i][0], matrixNode[i][1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
+                graph.AddEdge(node[0], node[1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;  // Ditemukan
             }
-            else if (matrixNode[i][2] == "2")
+            else if (node[4] == "2")
             {
-                graph.AddEdge(matrixNode[i][0], matrixNode[i][1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                graph.AddEdge(node[0], node[1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;   // Tidak ditemukan
             }
+        }
+        // Memberi label untuk setiap node dengan nama file/folder
+        foreach (string[] pathId in pathReference)
+        {
+            string[] leafLabelArr = pathId[0].Split('\\');
+            string leafLabel = leafLabelArr[leafLabelArr.Length - 1];
+
+            graph.FindNode(pathId[1]).Label.Text = leafLabel;
         }
 
         //bind the graph to the viewer 
@@ -220,28 +301,15 @@ class DepthFirstSearch
     }
 
     public static void Main()
-    {
+    {   // Fungsi utama
         string firstDir = "E:\\KERAMAT";
         string fileName = "test.txt";
-        string[][] matrixNode;
-        string[] lihatResult = getListPath(firstDir);
-        matrixNode = getMatrixNodeOnce(lihatResult, fileName);
-        
-        // Menampilkan isi matrix
-        for (int i = 0; i < matrixNode.Length; i++)
-        {
-            Console.WriteLine(matrixNode[i][0] + " " + matrixNode[i][1] + " " + matrixNode[i][2]);
-        }
-        // Menampilkan path hasil
-        for (int i = 0; i < lihatResult.Length; i++)
-        {
-            string[] arrHasil = lihatResult[i].Split('\\');
-            if (arrHasil[arrHasil.Length - 1] == fileName)
-            {
-                Console.WriteLine(lihatResult[i]);
-            }
-        }
+        string[] listPath = getListPath(firstDir);
+        string[][] pathReference = getPathId(listPath, firstDir);
+        string[][] matrixNodeAll = getMatrixNodeAllOccurrence(listPath, firstDir, fileName); // Semua kemunculan
+        string[][] matrixNodeOnce = getMatrixNodeOnce(listPath, firstDir, fileName);         // Kemunculan pertama
 
-        displayGraph(matrixNode);
+        displayGraph(pathReference, matrixNodeAll);
+        displayGraph(pathReference, matrixNodeOnce);
     }
 }
