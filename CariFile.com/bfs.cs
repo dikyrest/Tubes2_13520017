@@ -279,7 +279,7 @@ class ViewerSample
         return matrix;
     }
 
-    public static string[] BFSAll(string inputDisk, string inputSearch)
+    public static Result BFSAll(string inputDisk, string inputSearch)
     {
         string[] inputDiskArr = { inputDisk };
         string[] hasilBFS = cariAll(inputDiskArr);
@@ -331,17 +331,20 @@ class ViewerSample
         }
         
         viewer.Graph = graph;
-        form.SuspendLayout();
+        //form.SuspendLayout();
         viewer.Dock = System.Windows.Forms.DockStyle.Fill;
-        form.Controls.Add(viewer);
-        form.ResumeLayout();
-        form.ShowDialog();
+        //form.Controls.Add(viewer);
+        //form.ResumeLayout();
+        //form.ShowDialog();
 
         string[] listResult = getDirectory(hasilBFS, inputSearch);
-        return listResult;
+        Result res = new Result();
+        res.listOfPath = listResult;
+        res.graph = viewer;
+        return res;
     }
 
-    public static string[] BFSOne(string inputDisk, string inputSearch)
+    public static Result BFSOne(string inputDisk, string inputSearch)
     {
         string[] inputDiskArr = { inputDisk };
         string[] hasilBFS = cariAll(inputDiskArr);
@@ -392,20 +395,27 @@ class ViewerSample
         }
 
         viewer.Graph = graph;
-        form.SuspendLayout();
+        //form.SuspendLayout();
         viewer.Dock = System.Windows.Forms.DockStyle.Fill;
-        form.Controls.Add(viewer);
-        form.ResumeLayout();
-        form.ShowDialog();
+        //form.Controls.Add(viewer);
+        //form.ResumeLayout();
+        //form.ShowDialog();
 
         string[] listResult = getDirectoryOneFound(hasilBFS, inputSearch);
-        return listResult;
+        Result res = new Result();
+        res.listOfPath = listResult;
+        res.graph = viewer;
+        return res;
     }
-
+    /*
     public static void Main()
     {
-        string[] simpan1 = BFSAll("F:", "lima");
-        string[] simpan2 = BFSOne("F:", "lima");
+        //string[] simpan1 = BFSAll("F:", "lima");
+        //string[] simpan2 = BFSOne("F:", "lima");
         
+    }*/
+    public class Result { 
+        public string[] listOfPath { get; set; }
+        public Microsoft.Msagl.GraphViewerGdi.GViewer graph { get; set; }
     }
 }

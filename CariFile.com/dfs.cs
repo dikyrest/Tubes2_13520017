@@ -257,7 +257,7 @@ class DepthFirstSearch
     public static Microsoft.Msagl.GraphViewerGdi.GViewer displayGraph(string[][] pathReference, string[][] matrixNode)
     {
         //create a form 
-        System.Windows.Forms.Form form = new System.Windows.Forms.Form();
+       // System.Windows.Forms.Form form = new System.Windows.Forms.Form();
         //create a viewer object 
         Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
         //create a graph object 
@@ -290,26 +290,31 @@ class DepthFirstSearch
         //bind the graph to the viewer 
         viewer.Graph = graph;
         //associate the viewer with the form 
-        form.SuspendLayout();
+       // form.SuspendLayout();
         viewer.Dock = System.Windows.Forms.DockStyle.Fill;
-        form.Controls.Add(viewer);
-        form.ResumeLayout();
+       // form.Controls.Add(viewer);
+       // form.ResumeLayout();
         //show the form 
-        form.ShowDialog();
+       // form.ShowDialog();
         
         return viewer;
     }
 
-    public static void Main()
+    public static Microsoft.Msagl.GraphViewerGdi.GViewer DFS(string firstDir, string fileName,bool isSearchAll)
     {   // Fungsi utama
-        string firstDir = "E:\\KERAMAT";
-        string fileName = "test.txt";
+        //string firstDir = "E:\\KERAMAT";
+        //string fileName = "test.txt";
         string[] listPath = getListPath(firstDir);
         string[][] pathReference = getPathId(listPath, firstDir);
-        string[][] matrixNodeAll = getMatrixNodeAllOccurrence(listPath, firstDir, fileName); // Semua kemunculan
-        string[][] matrixNodeOnce = getMatrixNodeOnce(listPath, firstDir, fileName);         // Kemunculan pertama
-
-        displayGraph(pathReference, matrixNodeAll);
-        displayGraph(pathReference, matrixNodeOnce);
+        if (isSearchAll)
+        {
+            string[][] matrixNodeAll = getMatrixNodeAllOccurrence(listPath, firstDir, fileName); // Semua kemunculan
+            return displayGraph(pathReference, matrixNodeAll);
+        }
+        else
+        {
+            string[][] matrixNodeOnce = getMatrixNodeOnce(listPath, firstDir, fileName);         // Kemunculan pertama
+            return displayGraph(pathReference, matrixNodeOnce);
+        }
     }
 }

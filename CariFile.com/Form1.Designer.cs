@@ -48,6 +48,8 @@
             this.timeSpentLabel = new System.Windows.Forms.Label();
             this.panelTime = new System.Windows.Forms.Panel();
             this.timeString = new System.Windows.Forms.Label();
+            this.listPanel = new System.Windows.Forms.Panel();
+            this.pathLabel = new System.Windows.Forms.Label();
             this.mainPanel.SuspendLayout();
             this.outputPanel.SuspendLayout();
             this.inputPanel.SuspendLayout();
@@ -243,18 +245,17 @@
             // timeSpentLabel
             // 
             this.timeSpentLabel.AutoSize = true;
-            this.timeSpentLabel.Location = new System.Drawing.Point(462, 504);
+            this.timeSpentLabel.Location = new System.Drawing.Point(5, 504);
             this.timeSpentLabel.Name = "timeSpentLabel";
             this.timeSpentLabel.Size = new System.Drawing.Size(94, 20);
             this.timeSpentLabel.TabIndex = 3;
             this.timeSpentLabel.Text = "Time Spent:";
             this.timeSpentLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.timeSpentLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // panelTime
             // 
             this.panelTime.Controls.Add(this.timeString);
-            this.panelTime.Location = new System.Drawing.Point(562, 496);
+            this.panelTime.Location = new System.Drawing.Point(105, 497);
             this.panelTime.Name = "panelTime";
             this.panelTime.Size = new System.Drawing.Size(212, 33);
             this.panelTime.TabIndex = 4;
@@ -268,9 +269,27 @@
             this.timeString.TabIndex = 0;
             this.timeString.Text = "0 ms";
             // 
+            // listPanel
+            // 
+            this.listPanel.Location = new System.Drawing.Point(459, 497);
+            this.listPanel.Name = "listPanel";
+            this.listPanel.Size = new System.Drawing.Size(455, 166);
+            this.listPanel.TabIndex = 5;
+            // 
+            // pathLabel
+            // 
+            this.pathLabel.AutoSize = true;
+            this.pathLabel.Location = new System.Drawing.Point(324, 504);
+            this.pathLabel.Name = "pathLabel";
+            this.pathLabel.Size = new System.Drawing.Size(75, 20);
+            this.pathLabel.TabIndex = 6;
+            this.pathLabel.Text = "Path File:";
+            // 
             // Form1
             // 
-            this.ClientSize = new System.Drawing.Size(904, 525);
+            this.ClientSize = new System.Drawing.Size(904, 664);
+            this.Controls.Add(this.pathLabel);
+            this.Controls.Add(this.listPanel);
             this.Controls.Add(this.panelTime);
             this.Controls.Add(this.timeSpentLabel);
             this.Controls.Add(this.mainPanel);
@@ -310,6 +329,8 @@
         private System.Windows.Forms.Label timeSpentLabel;
         private System.Windows.Forms.Panel panelTime;
         private System.Windows.Forms.Label timeString;
+        private System.Windows.Forms.Panel listPanel;
+        private System.Windows.Forms.Label pathLabel;
     }
 }
 
