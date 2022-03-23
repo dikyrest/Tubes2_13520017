@@ -91,7 +91,7 @@ class ViewerSample
 
             if (leaf == fileName)
             {
-                listResult.Add(previousPath+'\\'+fileName);
+                listResult.Add(previousPath);
             }
         }
 
@@ -111,7 +111,7 @@ class ViewerSample
 
             if (leaf == fileName && isFound == 0)
             {
-                listResult.Add(previousPath + '\\' + fileName);
+                listResult.Add(previousPath);
                 isFound = 1;
             }
         }

@@ -83,7 +83,7 @@ namespace CariFile.com
                     //graphImage.Controls.Add()
                 }
                 long timeElapsed = stopwatch.ElapsedMilliseconds;
-                //Console.WriteLine(timeElapsed.ToString());
+                Console.WriteLine(timeElapsed.ToString());
                 string time = timeElapsed.ToString() + " ms";
                 timeString.Text = time;
                 graphOutput.Controls.Add(this.graph);
@@ -93,10 +93,10 @@ namespace CariFile.com
                 int i = 0;
                 this.linklabel.AutoSize = true;
                 this.linklabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linklabel_LinkClicked);
-                this.linklabel.LinkArea = new LinkArea(2, listPath[0].Length+1);
+                this.linklabel.LinkArea = new LinkArea(2, listPath[0].Length + fileName.Length + 1);
                 foreach (string path in listPath)
                 {
-                    string pathlink = (i + 1).ToString() + "." + path + '\n';
+                    string pathlink = (i + 1).ToString() + "." + path + '\\' + fileName + '\n';
                     linklabel.Text += pathlink;
                     if (i == 0)
                     {
@@ -104,7 +104,7 @@ namespace CariFile.com
                     }
                     else
                     {
-                        this.linklabel.Links.Add(linklabel.Text.Length-path.Length-1, path.Length, path);
+                        this.linklabel.Links.Add(linklabel.Text.Length - path.Length - fileName.Length - 2, path.Length + fileName.Length + 1, path);
                     }
                     i++;
                 }
@@ -115,9 +115,10 @@ namespace CariFile.com
                 stopwatch.Start();
                 //panggil yg DFS
                 this.res = DepthFirstSearch.DFS(this.startingDirectory, this.fileName, isSearchAllOccurence);
+                this.graph = res.graph;
                 stopwatch.Stop();
                 long timeElapsed = stopwatch.ElapsedMilliseconds;
-                //Console.WriteLine(timeElapsed.ToString());
+                Console.WriteLine(timeElapsed.ToString());
                 string time = timeElapsed.ToString() + " ms";
                 timeString.Text = time;
                 graphOutput.Controls.Add(this.graph);
@@ -127,10 +128,10 @@ namespace CariFile.com
                 int i = 0;
                 this.linklabel.AutoSize = true;
                 this.linklabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linklabel_LinkClicked);
-                this.linklabel.LinkArea = new LinkArea(2, listPath[0].Length + 1);
+                this.linklabel.LinkArea = new LinkArea(2, listPath[0].Length +fileName.Length+ 1);
                 foreach (string path in listPath)
                 {
-                    string pathlink = (i + 1).ToString() + "." + path + '\n';
+                    string pathlink = (i + 1).ToString() + "." + path +'\\' + fileName +'\n';
                     linklabel.Text += pathlink;
                     if (i == 0)
                     {
@@ -138,7 +139,7 @@ namespace CariFile.com
                     }
                     else
                     {
-                        this.linklabel.Links.Add(linklabel.Text.Length - path.Length - 1, path.Length, path);
+                        this.linklabel.Links.Add(linklabel.Text.Length-path.Length-fileName.Length-2, path.Length+fileName.Length+1, path);
                     }
                     i++;
                 }
@@ -154,6 +155,11 @@ namespace CariFile.com
                 // Navigate to a URL.
                 System.Diagnostics.Process.Start(path);
             }
+        }
+
+        private void graphOutput_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
     public class Result

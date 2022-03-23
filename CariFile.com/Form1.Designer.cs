@@ -87,7 +87,7 @@
             this.mainPanel.Controls.Add(this.inputPanel);
             this.mainPanel.Location = new System.Drawing.Point(2, 64);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(912, 427);
+            this.mainPanel.Size = new System.Drawing.Size(1131, 427);
             this.mainPanel.TabIndex = 2;
             // 
             // outputPanel
@@ -95,18 +95,19 @@
             this.outputPanel.Controls.Add(this.graphOutput);
             this.outputPanel.Controls.Add(this.outputLabel);
             this.outputPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.outputPanel.Location = new System.Drawing.Point(457, 0);
+            this.outputPanel.Location = new System.Drawing.Point(451, 0);
             this.outputPanel.Name = "outputPanel";
-            this.outputPanel.Size = new System.Drawing.Size(455, 427);
+            this.outputPanel.Size = new System.Drawing.Size(680, 427);
             this.outputPanel.TabIndex = 1;
             // 
             // graphOutput
             // 
             this.graphOutput.Dock = System.Windows.Forms.DockStyle.Right;
-            this.graphOutput.Location = new System.Drawing.Point(0, 37);
+            this.graphOutput.Location = new System.Drawing.Point(7, 37);
             this.graphOutput.Name = "graphOutput";
-            this.graphOutput.Size = new System.Drawing.Size(455, 390);
+            this.graphOutput.Size = new System.Drawing.Size(673, 390);
             this.graphOutput.TabIndex = 11;
+            this.graphOutput.Paint += new System.Windows.Forms.PaintEventHandler(this.graphOutput_Paint);
             // 
             // outputLabel
             // 
@@ -273,7 +274,7 @@
             // 
             this.listPanel.Location = new System.Drawing.Point(459, 497);
             this.listPanel.Name = "listPanel";
-            this.listPanel.Size = new System.Drawing.Size(455, 166);
+            this.listPanel.Size = new System.Drawing.Size(674, 166);
             this.listPanel.TabIndex = 5;
             // 
             // pathLabel
@@ -287,7 +288,7 @@
             // 
             // Form1
             // 
-            this.ClientSize = new System.Drawing.Size(904, 664);
+            this.ClientSize = new System.Drawing.Size(1145, 664);
             this.Controls.Add(this.pathLabel);
             this.Controls.Add(this.listPanel);
             this.Controls.Add(this.panelTime);

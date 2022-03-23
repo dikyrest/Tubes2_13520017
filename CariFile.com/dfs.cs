@@ -331,7 +331,7 @@ class DepthFirstSearch
 
             if (leaf == fileName)
             {
-                listResult.Add(previousPath + '\\' + fileName);
+                listResult.Add(previousPath);
             }
         }
 
@@ -351,7 +351,7 @@ class DepthFirstSearch
 
             if (leaf == fileName && isFound == 0)
             {
-                listResult.Add(previousPath + '\\' + fileName);
+                listResult.Add(previousPath);
                 isFound = 1;
             }
         }
