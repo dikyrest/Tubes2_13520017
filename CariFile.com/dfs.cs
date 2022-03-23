@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
 using System.Linq;
-
+using CariFile.com;
 class DepthFirstSearch
 {
     public static string[] getListPath(string firstDir)
@@ -292,29 +292,70 @@ class DepthFirstSearch
         //associate the viewer with the form 
        // form.SuspendLayout();
         viewer.Dock = System.Windows.Forms.DockStyle.Fill;
-       // form.Controls.Add(viewer);
-       // form.ResumeLayout();
+        // form.Controls.Add(viewer);
+        // form.ResumeLayout();
         //show the form 
-       // form.ShowDialog();
+        // form.ShowDialog();
         
         return viewer;
     }
 
-    public static Microsoft.Msagl.GraphViewerGdi.GViewer DFS(string firstDir, string fileName,bool isSearchAll)
+    public static Result DFS(string firstDir, string fileName,bool isSearchAll)
     {   // Fungsi utama
-        //string firstDir = "E:\\KERAMAT";
-        //string fileName = "test.txt";
         string[] listPath = getListPath(firstDir);
         string[][] pathReference = getPathId(listPath, firstDir);
+        Result res = new Result();
         if (isSearchAll)
         {
             string[][] matrixNodeAll = getMatrixNodeAllOccurrence(listPath, firstDir, fileName); // Semua kemunculan
-            return displayGraph(pathReference, matrixNodeAll);
+            res.graph =  displayGraph(pathReference, matrixNodeAll);
+            res.listOfPath = getDirectory(listPath, fileName);
         }
         else
         {
             string[][] matrixNodeOnce = getMatrixNodeOnce(listPath, firstDir, fileName);         // Kemunculan pertama
-            return displayGraph(pathReference, matrixNodeOnce);
+            res.graph = displayGraph(pathReference, matrixNodeOnce);
+            res.listOfPath = getDirectoryOneFound(listPath, fileName);
         }
+        return res;
+    }
+    public static string[] getDirectory(string[] listPath, string fileName)
+    {   // mengeluarkan folder dimana file / folder dapat ditemukan
+        List<string> listResult = new List<string>();
+        foreach (string path in listPath)
+        {
+
+            string[] arrLeaf = path.Split('\\');
+            string leaf = arrLeaf[arrLeaf.Length - 1];
+            string previousPath = path.Substring(0, path.Length - leaf.Length - 1);
+
+            if (leaf == fileName)
+            {
+                listResult.Add(previousPath + '\\' + fileName);
+            }
+        }
+
+        return listResult.ToArray();
+    }
+
+    public static string[] getDirectoryOneFound(string[] listPath, string fileName)
+    {   // mengeluarkan folder pertama dimana file / folder dapat ditemukan
+        List<string> listResult = new List<string>();
+        int isFound = 0;
+        foreach (string path in listPath)
+        {
+
+            string[] arrLeaf = path.Split('\\');
+            string leaf = arrLeaf[arrLeaf.Length - 1];
+            string previousPath = path.Substring(0, path.Length - leaf.Length - 1);
+
+            if (leaf == fileName && isFound == 0)
+            {
+                listResult.Add(previousPath + '\\' + fileName);
+                isFound = 1;
+            }
+        }
+
+        return listResult.ToArray();
     }
 }

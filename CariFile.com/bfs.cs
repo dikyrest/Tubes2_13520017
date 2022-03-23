@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
 using System.Linq;
+using CariFile.com;
 
 class ViewerSample
 {
@@ -90,7 +91,7 @@ class ViewerSample
 
             if (leaf == fileName)
             {
-                listResult.Add(previousPath);
+                listResult.Add(previousPath+'\\'+fileName);
             }
         }
 
@@ -110,7 +111,7 @@ class ViewerSample
 
             if (leaf == fileName && isFound == 0)
             {
-                listResult.Add(previousPath);
+                listResult.Add(previousPath + '\\' + fileName);
                 isFound = 1;
             }
         }
@@ -331,11 +332,7 @@ class ViewerSample
         }
         
         viewer.Graph = graph;
-        //form.SuspendLayout();
         viewer.Dock = System.Windows.Forms.DockStyle.Fill;
-        //form.Controls.Add(viewer);
-        //form.ResumeLayout();
-        //form.ShowDialog();
 
         string[] listResult = getDirectory(hasilBFS, inputSearch);
         Result res = new Result();
@@ -406,16 +403,5 @@ class ViewerSample
         res.listOfPath = listResult;
         res.graph = viewer;
         return res;
-    }
-    /*
-    public static void Main()
-    {
-        //string[] simpan1 = BFSAll("F:", "lima");
-        //string[] simpan2 = BFSOne("F:", "lima");
-        
-    }*/
-    public class Result { 
-        public string[] listOfPath { get; set; }
-        public Microsoft.Msagl.GraphViewerGdi.GViewer graph { get; set; }
     }
 }

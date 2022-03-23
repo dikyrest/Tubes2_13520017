@@ -21,7 +21,7 @@ namespace CariFile.com
         private Boolean isSearchAllOccurence;//bernilai true jika ingin mencari semua kemunculan fileName
         private Microsoft.Msagl.GraphViewerGdi.GViewer graph;//graph yg dibuat
         private System.Diagnostics.Stopwatch stopwatch;//stopwatch untuk menghitung waktu menjalankan algoritma
-        private ViewerSample.Result res;//hasil pencarian BFS
+        private Result res;//hasil pencarian BFS
         private LinkLabel linklabel = new LinkLabel();//linklabel buat nampilin hasil pencarian
         //private 
         public Form1()
@@ -83,7 +83,7 @@ namespace CariFile.com
                     //graphImage.Controls.Add()
                 }
                 long timeElapsed = stopwatch.ElapsedMilliseconds;
-                Console.WriteLine(timeElapsed.ToString());
+                //Console.WriteLine(timeElapsed.ToString());
                 string time = timeElapsed.ToString() + " ms";
                 timeString.Text = time;
                 graphOutput.Controls.Add(this.graph);
@@ -114,14 +114,35 @@ namespace CariFile.com
             {
                 stopwatch.Start();
                 //panggil yg DFS
-                this.graph = DepthFirstSearch.DFS(this.startingDirectory, this.fileName, isSearchAllOccurence);
+                this.res = DepthFirstSearch.DFS(this.startingDirectory, this.fileName, isSearchAllOccurence);
                 stopwatch.Stop();
                 long timeElapsed = stopwatch.ElapsedMilliseconds;
-                Console.WriteLine(timeElapsed.ToString());
+                //Console.WriteLine(timeElapsed.ToString());
                 string time = timeElapsed.ToString() + " ms";
                 timeString.Text = time;
-                string[] listPath = res.listOfPath;
                 graphOutput.Controls.Add(this.graph);
+                string[] listPath = res.listOfPath;
+                //string pathfile = "";
+                this.linklabel.Text = "";
+                int i = 0;
+                this.linklabel.AutoSize = true;
+                this.linklabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linklabel_LinkClicked);
+                this.linklabel.LinkArea = new LinkArea(2, listPath[0].Length + 1);
+                foreach (string path in listPath)
+                {
+                    string pathlink = (i + 1).ToString() + "." + path + '\n';
+                    linklabel.Text += pathlink;
+                    if (i == 0)
+                    {
+                        this.linklabel.Links[0].LinkData = listPath[0];
+                    }
+                    else
+                    {
+                        this.linklabel.Links.Add(linklabel.Text.Length - path.Length - 1, path.Length, path);
+                    }
+                    i++;
+                }
+                this.listPanel.Controls.Add(this.linklabel);
             }
         }
 
@@ -134,53 +155,10 @@ namespace CariFile.com
                 System.Diagnostics.Process.Start(path);
             }
         }
-        public partial class Tree
-        {
-            //attributes
-            private Node node;
-            //method
-            public Tree(string name, SearchStatus status)
-            {
-                this.node = new Node(name, status);
-            }
-        }
-        public partial class Node
-        {
-            //attributes
-            private string name;//name of the file/directory
-            private SearchStatus status;//status node tersebut
-            private List<Node> childNode;//node yang jadi child si node ini
-                                         //method
-            public Node(string name, SearchStatus status)
-            {
-                this.name = name;
-                this.status = status;
-                this.childNode = new List<Node>();
-            }
-            public void addChildNode(string name, SearchStatus status)
-            {
-                Node node = new Node(name, status);
-                this.childNode.Add(node);
-            }
-            public string getName()
-            {
-                return this.name;
-            }
-            public SearchStatus getStatus()
-            {
-                return this.status;
-            }
-            public List<Node> getChildNode()
-            {
-                return this.childNode;
-            }
-
-        }
-        public enum SearchStatus
-        {
-            FoundPath,//path ke arah file yang ditemukan
-            NotFoundPath,//file/folder yang tidak ditemukan
-            UnsearchedPath//file atau folder yang belum dicari
-        }
+    }
+    public class Result
+    {
+        public string[] listOfPath { get; set; }
+        public Microsoft.Msagl.GraphViewerGdi.GViewer graph { get; set; }
     }
 }
