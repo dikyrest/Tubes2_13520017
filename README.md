@@ -9,8 +9,10 @@ Program CariFile.com ini dibuat untuk memenuhi tugas mata kuliah IF2211 Strategi
 - ⬛: belum dikunjungi
 
 ## **Requirement**
+- Jalankan di _operating system_ Windows
 
 ## **Langkah Compile**
+_Tidak diperlukan karena sudah tersedia file executable di folder_ `bin`
 
 ## **Cara Menggunakan**
 1. Double klik pada file `CariFile.com.exe` di folder `bin`
