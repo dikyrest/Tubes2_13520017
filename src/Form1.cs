@@ -23,6 +23,7 @@ namespace CariFile.com
         private System.Diagnostics.Stopwatch stopwatch;//stopwatch untuk menghitung waktu menjalankan algoritma
         private Result res;//hasil pencarian BFS
         private LinkLabel linklabel = new LinkLabel();//linklabel buat nampilin hasil pencarian
+        private Label notFoundLabel = new Label();//label yang menunjukkan file yang dicari tidak ditemukan
         //private 
         public Form1()
         {
@@ -89,10 +90,9 @@ namespace CariFile.com
                 timeString.Text = time;
                 graphOutput.Controls.Add(this.graph);
                 string[] listPath = res.listOfPath;
-                //string pathfile = "";
+                this.linklabel.Text = "";
                 if (listPath.Length > 0)
                 {
-                    this.linklabel.Text = "";
                     int i = 0;
                     this.linklabel.AutoSize = true;
                     this.linklabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linklabel_LinkClicked);
@@ -113,6 +113,11 @@ namespace CariFile.com
                     }
                     this.listPanel.Controls.Add(this.linklabel);
                 }
+                else
+                {
+                    this.notFoundLabel.Text = "Tidak ada path";
+                    this.listPanel.Controls.Add(this.notFoundLabel);
+                }
             }
             else if (DFSbutton.Checked)
             {
@@ -127,7 +132,6 @@ namespace CariFile.com
                 timeString.Text = time;
                 graphOutput.Controls.Add(this.graph);
                 string[] listPath = res.listOfPath;
-                //string pathfile = "";
                 this.linklabel.Text = "";
                 int i = 0;
                 if (listPath.Length > 0)
@@ -149,8 +153,13 @@ namespace CariFile.com
                         }
                         i++;
                     }
-                    this.listPanel.Controls.Add(this.linklabel);
                 }
+                else
+                {
+                    this.notFoundLabel.Text = "Tidak ada path";
+                    this.listPanel.Controls.Add(this.notFoundLabel);
+                }
+                this.listPanel.Controls.Add(this.linklabel);
                 listPanel.AutoScroll = false;
                 listPanel.HorizontalScroll.Enabled = false;
                 listPanel.HorizontalScroll.Visible = false;
