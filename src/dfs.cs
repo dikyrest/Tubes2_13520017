@@ -297,7 +297,7 @@ class DepthFirstSearch
         {
             string[] leafLabelArr = pathId[0].Split('\\');
             string leafLabel = "";
-            if (leafLabelArr == null || leafLabelArr.Length == 0)
+            if (leafLabelArr == null || leafLabelArr.Length == 0 || leafLabelArr[leafLabelArr.Length-1] == "")
             {
                 leafLabel = pathId[0];
             }
