@@ -296,8 +296,15 @@ class DepthFirstSearch
         foreach (string[] pathId in pathReference)
         {
             string[] leafLabelArr = pathId[0].Split('\\');
-            string leafLabel = leafLabelArr[leafLabelArr.Length - 1];
-
+            string leafLabel = "";
+            if (leafLabelArr == null || leafLabelArr.Length == 0)
+            {
+                leafLabel = pathId[0];
+            }
+            else
+            {
+                leafLabel = leafLabelArr[leafLabelArr.Length - 1];
+            }
             graph.FindNode(pathId[1]).Label.Text = leafLabel;
         }
 
