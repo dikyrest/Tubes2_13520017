@@ -130,24 +130,32 @@ namespace CariFile.com
                 //string pathfile = "";
                 this.linklabel.Text = "";
                 int i = 0;
-                this.linklabel.AutoSize = true;
-                this.linklabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linklabel_LinkClicked);
-                this.linklabel.LinkArea = new LinkArea(2, listPath[0].Length +fileName.Length+ 1);
-                foreach (string path in listPath)
+                if (listPath.Length > 0)
                 {
-                    string pathlink = (i + 1).ToString() + "." + path +'\\' + fileName +'\n';
-                    linklabel.Text += pathlink;
-                    if (i == 0)
+                    this.linklabel.AutoSize = true;
+                    this.linklabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linklabel_LinkClicked);
+                    this.linklabel.LinkArea = new LinkArea(2, listPath[0].Length + fileName.Length + 1);
+                    foreach (string path in listPath)
                     {
-                        this.linklabel.Links[0].LinkData = listPath[0];
+                        string pathlink = (i + 1).ToString() + "." + path + '\\' + fileName + '\n';
+                        linklabel.Text += pathlink;
+                        if (i == 0)
+                        {
+                            this.linklabel.Links[0].LinkData = listPath[0];
+                        }
+                        else
+                        {
+                            this.linklabel.Links.Add(linklabel.Text.Length - path.Length - fileName.Length - 2, path.Length + fileName.Length + 1, path);
+                        }
+                        i++;
                     }
-                    else
-                    {
-                        this.linklabel.Links.Add(linklabel.Text.Length-path.Length-fileName.Length-2, path.Length+fileName.Length+1, path);
-                    }
-                    i++;
+                    this.listPanel.Controls.Add(this.linklabel);
                 }
-                this.listPanel.Controls.Add(this.linklabel);
+                listPanel.AutoScroll = false;
+                listPanel.HorizontalScroll.Enabled = false;
+                listPanel.HorizontalScroll.Visible = false;
+                listPanel.HorizontalScroll.Maximum = 0;
+                listPanel.AutoScroll = true;
             }
         }
 

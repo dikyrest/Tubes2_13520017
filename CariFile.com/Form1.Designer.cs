@@ -274,7 +274,7 @@
             // 
             this.listPanel.Location = new System.Drawing.Point(459, 497);
             this.listPanel.Name = "listPanel";
-            this.listPanel.Size = new System.Drawing.Size(674, 166);
+            this.listPanel.Size = new System.Drawing.Size(674, 243);
             this.listPanel.TabIndex = 5;
             // 
             // pathLabel
@@ -288,7 +288,7 @@
             // 
             // Form1
             // 
-            this.ClientSize = new System.Drawing.Size(1145, 664);
+            this.ClientSize = new System.Drawing.Size(1145, 752);
             this.Controls.Add(this.pathLabel);
             this.Controls.Add(this.listPanel);
             this.Controls.Add(this.panelTime);

@@ -272,11 +272,30 @@ class DepthFirstSearch
             else if (node[4] == "1")
             {
                 graph.AddEdge(node[0], node[1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;  // Ditemukan
+                graph.FindNode(node[0]).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
+                graph.FindNode(node[0]).Label.FontColor = Microsoft.Msagl.Drawing.Color.Blue;
+                graph.FindNode(node[1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
+                graph.FindNode(node[1]).Label.FontColor = Microsoft.Msagl.Drawing.Color.Blue;
             }
             else if (node[4] == "2")
             {
                 graph.AddEdge(node[0], node[1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;   // Tidak ditemukan
+                if (graph.FindNode(node[0]).Attr.Color != Microsoft.Msagl.Drawing.Color.Blue)
+                {
+                    graph.FindNode(node[0]).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                    graph.FindNode(node[0]).Label.FontColor = Microsoft.Msagl.Drawing.Color.Red;
+                }
+                graph.FindNode(node[1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                graph.FindNode(node[1]).Label.FontColor = Microsoft.Msagl.Drawing.Color.Red;
             }
+            graph.FindNode(node[0]).Attr.LabelMargin = 50;
+            graph.FindNode(node[1]).Attr.LabelMargin = 50;
+
+            graph.FindNode(node[0]).Attr.Padding = 20;
+            graph.FindNode(node[1]).Attr.Padding = 20;
+
+            graph.FindNode(node[0]).Attr.Shape = Microsoft.Msagl.Drawing.Shape.Plaintext;
+            graph.FindNode(node[1]).Attr.Shape = Microsoft.Msagl.Drawing.Shape.Plaintext;
         }
         // Memberi label untuk setiap node dengan nama file/folder
         foreach (string[] pathId in pathReference)

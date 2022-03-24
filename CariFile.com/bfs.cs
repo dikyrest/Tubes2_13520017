@@ -319,10 +319,19 @@ class ViewerSample
             {
                 graph.AddEdge(matrixBFS[i][0], matrixBFS[i][1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
             }
+            graph.FindNode(matrixBFS[i][0]).Attr.LabelMargin = 50;
+            graph.FindNode(matrixBFS[i][1]).Attr.LabelMargin = 50;
+
+            graph.FindNode(matrixBFS[i][0]).Attr.Padding = 20;
+            graph.FindNode(matrixBFS[i][1]).Attr.Padding = 20;
+            
+            graph.FindNode(matrixBFS[i][0]).Attr.Shape = Microsoft.Msagl.Drawing.Shape.Plaintext;
+            graph.FindNode(matrixBFS[i][1]).Attr.Shape = Microsoft.Msagl.Drawing.Shape.Plaintext;
+
         }
 
-        
-        
+
+
         for (int i = 0; i < pathReference.Length; i++) 
         {   // mengubah id dalam graf menjadi nilai file / folder yang benar
                         
@@ -390,6 +399,14 @@ class ViewerSample
             {
                 graph.AddEdge(matrixBFS[i][0], matrixBFS[i][1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
             }
+            graph.FindNode(matrixBFS[i][0]).Attr.LabelMargin = 50;
+            graph.FindNode(matrixBFS[i][1]).Attr.LabelMargin = 50;
+
+            graph.FindNode(matrixBFS[i][0]).Attr.Padding = 20;
+            graph.FindNode(matrixBFS[i][1]).Attr.Padding = 20;
+
+            graph.FindNode(matrixBFS[i][0]).Attr.Shape = Microsoft.Msagl.Drawing.Shape.Plaintext;
+            graph.FindNode(matrixBFS[i][1]).Attr.Shape = Microsoft.Msagl.Drawing.Shape.Plaintext;
         }
 
 
