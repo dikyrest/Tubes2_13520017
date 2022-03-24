@@ -298,11 +298,21 @@ class ViewerSample
             if (matrixBFS[i][4] == "2")
             {
                 graph.AddEdge(matrixBFS[i][0], matrixBFS[i][1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                if (graph.FindNode(matrixBFS[i][0]).Attr.Color != Microsoft.Msagl.Drawing.Color.Blue){
+                    graph.FindNode(matrixBFS[i][0]).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                    graph.FindNode(matrixBFS[i][0]).Label.FontColor = Microsoft.Msagl.Drawing.Color.Red;
+                }
+                graph.FindNode(matrixBFS[i][1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                graph.FindNode(matrixBFS[i][1]).Label.FontColor = Microsoft.Msagl.Drawing.Color.Red;
             }
 
             else if (matrixBFS[i][4] == "1")
             {
                 graph.AddEdge(matrixBFS[i][0], matrixBFS[i][1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
+                graph.FindNode(matrixBFS[i][0]).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
+                graph.FindNode(matrixBFS[i][0]).Label.FontColor = Microsoft.Msagl.Drawing.Color.Blue;
+                graph.FindNode(matrixBFS[i][1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
+                graph.FindNode(matrixBFS[i][1]).Label.FontColor = Microsoft.Msagl.Drawing.Color.Blue;
             }
 
             else if (matrixBFS[i][4] == "0")
@@ -358,11 +368,22 @@ class ViewerSample
             if (matrixBFS[i][4] == "2")
             {
                 graph.AddEdge(matrixBFS[i][0], matrixBFS[i][1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                if (graph.FindNode(matrixBFS[i][0]).Attr.Color != Microsoft.Msagl.Drawing.Color.Blue)
+                {
+                    graph.FindNode(matrixBFS[i][0]).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                    graph.FindNode(matrixBFS[i][0]).Label.FontColor = Microsoft.Msagl.Drawing.Color.Red;
+                }
+                graph.FindNode(matrixBFS[i][1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                graph.FindNode(matrixBFS[i][1]).Label.FontColor = Microsoft.Msagl.Drawing.Color.Red;
             }
 
             else if (matrixBFS[i][4] == "1")
             {
                 graph.AddEdge(matrixBFS[i][0], matrixBFS[i][1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
+                graph.FindNode(matrixBFS[i][0]).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
+                graph.FindNode(matrixBFS[i][0]).Label.FontColor = Microsoft.Msagl.Drawing.Color.Blue;
+                graph.FindNode(matrixBFS[i][1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
+                graph.FindNode(matrixBFS[i][1]).Label.FontColor = Microsoft.Msagl.Drawing.Color.Blue;
             }
 
             else if (matrixBFS[i][4] == "0")
