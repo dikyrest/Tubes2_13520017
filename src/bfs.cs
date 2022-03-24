@@ -337,7 +337,7 @@ class ViewerSample
                         
             string[] leafLabelArr = pathReference[i][0].Split('\\');
             string leafLabel = "";
-            if (leafLabelArr.Length == 0)
+            if (leafLabelArr == null || leafLabelArr.Length == 0 || leafLabelArr[leafLabelArr.Length-1] == "")
             {
                 leafLabel = pathReference[i][0];
             }
@@ -416,7 +416,7 @@ class ViewerSample
 
             string[] leafLabelArr = pathReference[i][0].Split('\\');
             string leafLabel = "";
-            if (leafLabelArr.Length == 0)
+            if (leafLabelArr == null || leafLabelArr.Length == 0 || leafLabelArr[leafLabelArr.Length-1] == "")
             {
                 leafLabel = pathReference[i][0];
             }

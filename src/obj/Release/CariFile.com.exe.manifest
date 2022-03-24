@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CariFile.com.exe" size="26592">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CariFile.com.exe" size="26080">
       <assemblyIdentity name="CariFile.com" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>251rNZ27DifjTik+8hwXpIejBtlyWgBIpkxZ+W3oBoo=</dsig:DigestValue>
+        <dsig:DigestValue>q1+tP+9YW/iaRm9RcWhv2AwPuE11nuWNhPhejJpyS40=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
