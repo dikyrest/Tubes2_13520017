@@ -430,11 +430,7 @@ class ViewerSample
         }
 
         viewer.Graph = graph;
-        //form.SuspendLayout();
         viewer.Dock = System.Windows.Forms.DockStyle.Fill;
-        //form.Controls.Add(viewer);
-        //form.ResumeLayout();
-        //form.ShowDialog();
 
         string[] listResult = getDirectoryOneFound(hasilBFS, inputSearch);
         Result res = new Result();

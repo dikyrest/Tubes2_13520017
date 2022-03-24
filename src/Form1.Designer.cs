@@ -107,7 +107,6 @@
             this.graphOutput.Name = "graphOutput";
             this.graphOutput.Size = new System.Drawing.Size(673, 390);
             this.graphOutput.TabIndex = 11;
-            this.graphOutput.Paint += new System.Windows.Forms.PaintEventHandler(this.graphOutput_Paint);
             // 
             // outputLabel
             // 
@@ -170,7 +169,6 @@
             this.BFSbutton.TabStop = true;
             this.BFSbutton.Text = "BFS";
             this.BFSbutton.UseVisualStyleBackColor = true;
-            this.BFSbutton.CheckedChanged += new System.EventHandler(this.BFSbutton_CheckedChanged);
             // 
             // chooseMethodLabel
             // 
@@ -192,7 +190,6 @@
             this.findAllOccurenceButton.TabIndex = 5;
             this.findAllOccurenceButton.Text = "Temukan Semua Kemunculan";
             this.findAllOccurenceButton.UseVisualStyleBackColor = true;
-            this.findAllOccurenceButton.CheckedChanged += new System.EventHandler(this.findAllOccurenceButton_CheckedChanged);
             // 
             // fileNameTextBox
             // 

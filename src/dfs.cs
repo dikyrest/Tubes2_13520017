@@ -256,13 +256,8 @@ class DepthFirstSearch
 
     public static Microsoft.Msagl.GraphViewerGdi.GViewer displayGraph(string[][] pathReference, string[][] matrixNode)
     {
-        //create a form 
-       // System.Windows.Forms.Form form = new System.Windows.Forms.Form();
-        //create a viewer object 
         Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
-        //create a graph object 
         Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
-        //create the graph content 
         foreach (string[] node in matrixNode)
         {
             if (node[4] == "0")
@@ -308,13 +303,7 @@ class DepthFirstSearch
 
         //bind the graph to the viewer 
         viewer.Graph = graph;
-        //associate the viewer with the form 
-       // form.SuspendLayout();
         viewer.Dock = System.Windows.Forms.DockStyle.Fill;
-        // form.Controls.Add(viewer);
-        // form.ResumeLayout();
-        //show the form 
-        // form.ShowDialog();
         
         return viewer;
     }

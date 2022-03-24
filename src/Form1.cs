@@ -34,7 +34,7 @@ namespace CariFile.com
         private void btnBrowse_Click(object sender, EventArgs e)
         {
             CommonOpenFileDialog dialog = new CommonOpenFileDialog();
-            dialog.InitialDirectory = "C:\\Users";
+            dialog.InitialDirectory = "C:\\";
             dialog.IsFolderPicker = true;
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
@@ -42,28 +42,16 @@ namespace CariFile.com
                 this.startingDirectory = dialog.FileName;
             }
         }
-
-        private void BFSbutton_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void findAllOccurenceButton_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void startSearchButton_Click(object sender, EventArgs e)
         {
-            stopwatch.Start();
+            //setup data
             this.fileName = fileNameTextBox.Text;
             this.isSearchAllOccurence = findAllOccurenceButton.Checked;
             timeString.Text = "0 ms";
             //reset graph
             graphOutput.Controls.Clear();
             this.listPanel.Controls.Clear();
-            stopwatch.Stop();
-            Console.WriteLine(stopwatch.ElapsedMilliseconds.ToString());
+            //jika memilih menggunakan BFS
             if (BFSbutton.Checked)
             {
                 //panggil yg BFS
@@ -82,13 +70,13 @@ namespace CariFile.com
                     this.res = ViewerSample.BFSOne(this.startingDirectory, this.fileName);
                     this.graph = res.graph;
                     stopwatch.Stop();
-                    //graphImage.Controls.Add()
                 }
+                //memproses waktu pencarian
                 long timeElapsed = stopwatch.ElapsedMilliseconds;
-                Console.WriteLine(timeElapsed.ToString());
                 string time = timeElapsed.ToString() + " ms";
                 timeString.Text = time;
                 graphOutput.Controls.Add(this.graph);
+                //menampilkan daftar pathfile
                 string[] listPath = res.listOfPath;
                 this.linklabel.Text = "";
                 if (listPath.Length > 0)
@@ -119,6 +107,7 @@ namespace CariFile.com
                     this.listPanel.Controls.Add(this.notFoundLabel);
                 }
             }
+            //memilih menggunakan DFS
             else if (DFSbutton.Checked)
             {
                 stopwatch.Start();
@@ -126,11 +115,12 @@ namespace CariFile.com
                 this.res = DepthFirstSearch.DFS(this.startingDirectory, this.fileName, isSearchAllOccurence);
                 this.graph = res.graph;
                 stopwatch.Stop();
+                //memproses waktu pencarian
                 long timeElapsed = stopwatch.ElapsedMilliseconds;
-                Console.WriteLine(timeElapsed.ToString());
                 string time = timeElapsed.ToString() + " ms";
                 timeString.Text = time;
                 graphOutput.Controls.Add(this.graph);
+                //menampilkan daftar pathfile
                 string[] listPath = res.listOfPath;
                 this.linklabel.Text = "";
                 int i = 0;
@@ -160,6 +150,7 @@ namespace CariFile.com
                     this.listPanel.Controls.Add(this.notFoundLabel);
                 }
                 this.listPanel.Controls.Add(this.linklabel);
+                //mengatur scrollbar
                 listPanel.AutoScroll = false;
                 listPanel.HorizontalScroll.Enabled = false;
                 listPanel.HorizontalScroll.Visible = false;
@@ -168,6 +159,7 @@ namespace CariFile.com
             }
         }
 
+        //membuka folder di pathfile
         private void linklabel_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
         {
             {
@@ -177,12 +169,8 @@ namespace CariFile.com
                 System.Diagnostics.Process.Start(path);
             }
         }
-
-        private void graphOutput_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
+    //class buat nyimpen hasil pencarian
     public class Result
     {
         public string[] listOfPath { get; set; }
